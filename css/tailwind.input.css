@@ -1,0 +1,7 @@
+/* Opzionale: pipeline Tailwind per purge in produzione
+   npm install -D tailwindcss @tailwindcss/cli
+   npx @tailwindcss/cli -i ./css/tailwind.input.css -o ./css/tailwind.css --minify
+*/
+@tailwind base;
+@tailwind components;
+@tailwind utilities;

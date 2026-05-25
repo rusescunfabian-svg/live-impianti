@@ -1,0 +1,3 @@
+Inserisci qui la foto HD dell'impianto fotovoltaico con il nome: hero.jpg
+Percorso: live-impianti/assets/images/hero.jpg
+Consigliato: 1920×1080, JPG ottimizzato o WebP.
