@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="it">
 <head>
   <meta charset="UTF-8">
@@ -800,13 +800,8 @@
     .numero-label { 
       font-size: 0.8rem; color: rgba(255,255,255,0.55); 
       margin-top: 8px; letter-spacing: 0.06em;
-      opacity: 0;
-      transform: translateY(10px);
-      transition: all 0.6s ease 0.8s;
-    }
-    .numero-item.animated .numero-label {
       opacity: 1;
-      transform: translateY(0);
+      transform: none;
     }
 
     /* ===== METODO ===== */
@@ -1141,11 +1136,25 @@
 
     /* ===== STICKY MOBILE ===== */
     .sticky-call {
-      position: fixed; bottom: 0; inset-x: 0; z-index: 90;
-      height: 56px; background: var(--green);
+      position: fixed; bottom: 136px; right: 20px; z-index: 90;
+      width: 52px; height: 52px; border-radius: 50%;
+      background: var(--green); color: white;
       display: none; align-items: center; justify-content: center;
-      color: white; font-weight: 700; font-size: 0.9rem; letter-spacing: 0.06em;
+      box-shadow: 0 4px 20px rgba(26,71,42,0.35);
+      transition: transform 0.2s;
     }
+    .sticky-call:hover { transform: scale(1.08); }
+    .sticky-call svg { width: 24px; height: 24px; }
+    .call-float {
+      position: fixed; bottom: 140px; right: 20px; z-index: 91;
+      width: 52px; height: 52px; border-radius: 50%;
+      background: var(--green); color: white;
+      display: none; align-items: center; justify-content: center;
+      box-shadow: 0 4px 20px rgba(26,71,42,0.35);
+      transition: transform 0.2s;
+    }
+    .call-float:hover { transform: scale(1.08); }
+    .call-float svg { width: 24px; height: 24px; }
     .wa-float {
       position: fixed; bottom: 76px; right: 20px; z-index: 90;
       width: 52px; height: 52px; border-radius: 50%;
@@ -1156,110 +1165,6 @@
     }
     .wa-float:hover { transform: scale(1.08); }
     .wa-float svg { width: 26px; height: 26px; }
-
-    /* ===== ADMIN PANEL ===== */
-    .admin-toggle {
-      position: fixed; bottom: 20px; left: 20px; z-index: 200;
-      width: 44px; height: 44px; border-radius: 50%;
-      background: var(--ink); color: var(--gold);
-      display: flex; align-items: center; justify-content: center;
-      box-shadow: 0 4px 20px rgba(0,0,0,0.3); transition: background 0.2s;
-    }
-    .admin-toggle:hover { background: var(--ink-mid); }
-    .admin-toggle svg { width: 20px; height: 20px; }
-    .admin-overlay {
-      position: fixed; inset: 0; z-index: 300;
-      background: rgba(10,18,12,0.8); backdrop-filter: blur(8px);
-      display: none; align-items: center; justify-content: center; padding: 20px;
-    }
-    .admin-overlay.open { display: flex; }
-    .admin-panel {
-      background: var(--white); border-radius: var(--r-lg);
-      width: 100%; max-width: 640px; max-height: 90vh; overflow-y: auto;
-      box-shadow: var(--shadow-deep);
-    }
-    .admin-header {
-      padding: 28px 32px; border-bottom: 1px solid var(--cream-warm);
-      display: flex; align-items: center; justify-content: space-between;
-      position: sticky; top: 0; background: var(--white); z-index: 1;
-    }
-    .admin-title { font-family: 'Cormorant Garamond', serif; font-size: 1.4rem; font-weight: 600; }
-    .admin-close {
-      width: 36px; height: 36px; border-radius: 50%;
-      background: var(--cream); display: flex; align-items: center; justify-content: center;
-      transition: background 0.2s;
-    }
-    .admin-close:hover { background: var(--cream-warm); }
-    .admin-body { padding: 32px; }
-    .admin-section-title { font-size: 0.72rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--gold); margin-bottom: 16px; }
-    .admin-form-group { margin-bottom: 16px; }
-    .admin-label { font-size: 0.78rem; font-weight: 600; color: var(--ink-soft); display: block; margin-bottom: 6px; }
-    .admin-input, .admin-select, .admin-textarea {
-      width: 100%; padding: 10px 14px; border: 1.5px solid var(--cream-warm);
-      border-radius: var(--r-sm); font-family: 'Outfit', sans-serif; font-size: 0.88rem;
-      color: var(--ink); background: var(--cream); transition: border-color 0.2s;
-      -webkit-appearance: none;
-    }
-    .admin-input:focus, .admin-select:focus, .admin-textarea:focus {
-      outline: none; border-color: var(--green); background: var(--white);
-    }
-    .admin-textarea { resize: vertical; min-height: 80px; }
-    .admin-row { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
-    .admin-upload-area {
-      border: 2px dashed var(--cream-warm); border-radius: var(--r-sm);
-      padding: 32px; text-align: center; cursor: pointer;
-      transition: all 0.2s; background: var(--cream);
-    }
-    .admin-upload-area:hover { border-color: var(--green); background: var(--green-pale); }
-    .admin-upload-area.dragover { border-color: var(--gold); background: var(--gold-pale); }
-    .admin-upload-icon { color: var(--ink-soft); margin: 0 auto 8px; }
-    .admin-upload-text { font-size: 0.85rem; color: var(--ink-soft); }
-    .admin-upload-text strong { color: var(--green); }
-    .admin-preview { margin-top: 12px; display: flex; flex-wrap: wrap; gap: 8px; }
-    .admin-preview-item {
-      width: 80px; height: 80px; border-radius: var(--r-sm);
-      overflow: hidden; position: relative; border: 1.5px solid var(--cream-warm);
-    }
-    .admin-preview-item img { width: 100%; height: 100%; object-fit: cover; }
-    .admin-preview-remove {
-      position: absolute; top: 3px; right: 3px; width: 18px; height: 18px;
-      border-radius: 50%; background: rgba(0,0,0,0.6); color: white;
-      display: flex; align-items: center; justify-content: center;
-      font-size: 10px;
-    }
-    .admin-btn {
-      width: 100%; padding: 14px; background: var(--green); color: white;
-      font-family: 'Outfit', sans-serif; font-weight: 600; font-size: 0.9rem;
-      border-radius: var(--r-sm); transition: background 0.2s; margin-top: 8px;
-    }
-    .admin-btn:hover { background: var(--green-mid); }
-    .admin-divider { border: none; border-top: 1px solid var(--cream-warm); margin: 28px 0; }
-    .admin-projects-list { display: flex; flex-direction: column; gap: 8px; }
-    .admin-project-row {
-      display: flex; align-items: center; gap: 12px;
-      padding: 12px; border-radius: var(--r-sm); background: var(--cream);
-      border: 1px solid var(--cream-warm);
-    }
-    .admin-project-thumb {
-      width: 48px; height: 48px; border-radius: 6px; overflow: hidden; flex-shrink: 0;
-    }
-    .admin-project-thumb img { width: 100%; height: 100%; object-fit: cover; }
-    .admin-project-name { font-size: 0.85rem; font-weight: 600; flex: 1; }
-    .admin-project-cat { font-size: 0.72rem; color: var(--ink-soft); }
-    .admin-project-del {
-      width: 28px; height: 28px; border-radius: 50%; background: #fee2e2;
-      color: #ef4444; display: flex; align-items: center; justify-content: center;
-      transition: background 0.2s; font-size: 13px;
-    }
-    .admin-project-del:hover { background: #fecaca; }
-    .admin-toast {
-      position: fixed; top: 20px; right: 20px; z-index: 1000;
-      padding: 14px 20px; background: var(--green); color: white;
-      border-radius: var(--r-sm); font-size: 0.88rem; font-weight: 500;
-      box-shadow: var(--shadow-deep); opacity: 0; transform: translateY(-8px);
-      transition: all 0.3s; pointer-events: none;
-    }
-    .admin-toast.show { opacity: 1; transform: translateY(0); }
 
     /* ===== REVEAL ANIMATIONS ===== */
     [data-reveal] { opacity: 0; transform: translateY(28px); transition: opacity 0.7s ease, transform 0.7s ease; }
@@ -1379,9 +1284,15 @@
       .hero-eyebrow { font-size: 0.7rem; padding: 8px 20px; }
       .hero-h1 { font-size: clamp(2.2rem, 7vw, 3.2rem); }
       .hero-lead { font-size: 1rem; max-width: 100%; }
-      .hero-stats { flex-wrap: wrap; gap: 24px; padding-top: 36px; margin-top: 40px; }
-      .hero-stat-num { font-size: 2.4rem; }
-      .hero-stat-label { font-size: 0.72rem; }
+      .logo-icon { display: none; }
+      .cursor { display: none; }
+      .cursor-ring { display: none; }
+      .logo-text { font-size: 1.15rem; }
+      .hero { min-height: 620px; }
+      .hero-stats { width: 100%; display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; padding-top: 28px; margin-top: 34px; }
+      .hero-stat { padding: 10px 8px; border: 1px solid rgba(255,255,255,0.12); border-radius: 14px; background: rgba(255,255,255,0.03); }
+      .hero-stat-num { font-size: 1.8rem; }
+      .hero-stat-label { font-size: 0.6rem; letter-spacing: 0.12em; }
       .hero-actions { gap: 12px; margin-top: 40px; }
       .btn-primary, .btn-ghost { padding: 14px 28px; font-size: 0.85rem; }
       .container { padding: 0 20px; }
@@ -1399,12 +1310,14 @@
       .form-wrap { padding: 28px 20px; }
       .f-row { grid-template-columns: 1fr; }
       .footer-top { grid-template-columns: 1fr; }
-      .sticky-call { display: flex; }
+      .sticky-call { display: none; }
+      .call-float { display: flex; }
       .wa-float { bottom: 70px; }
       .cta-actions { flex-direction: column; align-items: center; }
       .lightbox-inner { grid-template-columns: 1fr; max-height: 95vh; }
       .lightbox-info { max-height: 40vh; }
       .projects-header { flex-direction: column; align-items: flex-start; gap: 0; }
+      .hero-scroll { left: auto; right: 20px; transform: none; }
     }
   </style>
 </head>
@@ -1413,9 +1326,6 @@
   <!-- Custom Cursor (desktop only) -->
   <div class="cursor" id="cursor"></div>
   <div class="cursor-ring" id="cursorRing"></div>
-
-  <!-- Toast -->
-  <div class="admin-toast" id="toast"></div>
 
   <!-- Mobile Nav -->
   <div class="mob-nav" id="mobNav">
@@ -1465,7 +1375,7 @@
         <em>costruita oggi</em>
       </h1>
       <p class="hero-lead">
-        Progettiamo e installiamo impianti fotovoltaici, pompe di calore, VMC e domotica — cu studio tecnico interno și zero subappalti.
+        Progettiamo e installiamo impianti fotovoltaici, pompe di calore, VMC e domotica — con studio tecnico interno e zero subappalti.
       </p>
       <div class="hero-stats">
         <div class="hero-stat">
@@ -1478,7 +1388,7 @@
         </div>
         <div class="hero-stat">
           <div class="hero-stat-num">100%</div>
-          <div class="hero-stat-label">In house, zero subappalti</div>
+          <div class="hero-stat-label">Team certificato</div>
         </div>
       </div>
       <div class="hero-actions">
@@ -1530,7 +1440,7 @@
 
       <!-- Featured project -->
       <div id="featured-project" data-reveal>
-        <p style="color:var(--ink-soft);text-align:center;padding:40px 0;font-style:italic">Nessun progetto ancora. Aggiungili dal pannello admin ↙</p>
+        <p style="color:var(--ink-soft);text-align:center;padding:40px 0;font-style:italic">Nessun progetto ancora.</p>
       </div>
 
       <!-- Grid progetti -->
@@ -1852,101 +1762,22 @@
 
   <!-- Sticky mobile call -->
   <a href="tel:+393881692517" class="sticky-call" aria-label="Chiama Live Impianti">
-    📞 CHIAMA ORA — 388 169 2517
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+      <path stroke-linecap="round" stroke-linejoin="round" d="M22 16.92v3a2 2 0 01-2.18 2 19.86 19.86 0 01-8.63-3.07 19.5 19.5 0 01-6-6A19.86 19.86 0 013.08 4.18 2 2 0 015.11 2h3a2 2 0 012 1.72c.12.86.3 1.7.54 2.5a2 2 0 01-.45 2.11L9.91 9.91a16 16 0 006 6l1.58-1.58a2 2 0 012.11-.45c.8.24 1.64.42 2.5.54A2 2 0 0122 16.92z"/>
+    </svg>
+  </a>
+
+  <!-- Call float (mobile only) -->
+  <a href="tel:+393881692517" class="call-float" aria-label="Chiama Live Impianti">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+      <path stroke-linecap="round" stroke-linejoin="round" d="M22 16.92v3a2 2 0 01-2.18 2 19.86 19.86 0 01-8.63-3.07 19.5 19.5 0 01-6-6A19.86 19.86 0 013.08 4.18 2 2 0 015.11 2h3a2 2 0 012 1.72c.12.86.3 1.7.54 2.5a2 2 0 01-.45 2.11L9.91 9.91a16 16 0 006 6l1.58-1.58a2 2 0 012.11-.45c.8.24 1.64.42 2.5.54A2 2 0 0122 16.92z"/>
+    </svg>
   </a>
 
   <!-- WhatsApp float -->
   <a href="https://wa.me/393881692517?text=Salve%2C%20vorrei%20una%20consulenza%20tecnica" target="_blank" rel="noopener" class="wa-float" aria-label="WhatsApp">
     <svg fill="currentColor" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
   </a>
-
-  <!-- ADMIN TOGGLE -->
-  <button class="admin-toggle" id="adminToggle" title="Gestisci progetti">
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M12 6V4m0 2a2 2 0 100 4m0-4a2 2 0 110 4m-6 8a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4m6 6v10m6-2a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4"/></svg>
-  </button>
-
-  <!-- ADMIN PANEL -->
-  <div class="admin-overlay" id="adminOverlay">
-    <div class="admin-panel">
-      <div class="admin-header">
-        <div class="admin-title">Gestione Progetti</div>
-        <button class="admin-close" id="adminClose">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 6L6 18M6 6l12 12"/></svg>
-        </button>
-      </div>
-      <div class="admin-body">
-        <!-- Aggiungi progetto -->
-        <div class="admin-section-title">Aggiungi nuovo progetto</div>
-
-        <div class="admin-form-group">
-          <label class="admin-label">Titolo progetto *</label>
-          <input class="admin-input" id="a-title" placeholder="Es. Fotovoltaico 6kW — Villa Parioli" type="text">
-        </div>
-
-        <div class="admin-row">
-          <div class="admin-form-group">
-            <label class="admin-label">Categoria</label>
-            <select class="admin-select" id="a-cat">
-              <option value="Fotovoltaico">Fotovoltaico</option>
-              <option value="Pompa di calore">Pompa di calore</option>
-              <option value="VMC">VMC</option>
-              <option value="Domotica">Domotica</option>
-              <option value="Sistemi Radianti">Sistemi Radianti</option>
-              <option value="Sicurezza">Sicurezza</option>
-              <option value="Impianto completo">Impianto completo</option>
-            </select>
-          </div>
-          <div class="admin-form-group">
-            <label class="admin-label">Zona (es. Parioli, Roma)</label>
-            <input class="admin-input" id="a-zone" placeholder="Roma Nord" type="text">
-          </div>
-        </div>
-
-        <div class="admin-row">
-          <div class="admin-form-group">
-            <label class="admin-label">Potenza / Dettaglio tecnico</label>
-            <input class="admin-input" id="a-power" placeholder="6 kWp" type="text">
-          </div>
-          <div class="admin-form-group">
-            <label class="admin-label">Anno installazione</label>
-            <input class="admin-input" id="a-year" placeholder="2024" type="text">
-          </div>
-        </div>
-
-        <div class="admin-form-group">
-          <label class="admin-label">Descrizione</label>
-          <textarea class="admin-textarea" id="a-desc" placeholder="Breve descrizione dell'impianto e dei risultati ottenuti…"></textarea>
-        </div>
-
-        <div class="admin-form-group">
-          <label class="admin-label">Immagine principale</label>
-          <div class="admin-upload-area" id="uploadArea" onclick="document.getElementById('imgInput').click()">
-            <div class="admin-upload-icon">
-              <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
-            </div>
-            <div class="admin-upload-text"><strong>Clicca per caricare</strong> o trascina qui<br><small style="color:#94a3b8">JPG, PNG, WEBP — max 10MB</small></div>
-          </div>
-          <input type="file" id="imgInput" accept="image/*" multiple style="display:none">
-          <div class="admin-preview" id="imgPreview"></div>
-        </div>
-
-        <div class="admin-form-group" style="display:flex;align-items:center;gap:10px">
-          <input type="checkbox" id="a-featured" style="width:18px;height:18px;accent-color:var(--green)">
-          <label class="admin-label" for="a-featured" style="margin:0">Metti in primo piano (progetto in evidenza)</label>
-        </div>
-
-        <button class="admin-btn" id="a-save">+ Aggiungi progetto</button>
-
-        <hr class="admin-divider">
-
-        <!-- Lista progetti esistenti -->
-        <div class="admin-section-title">Progetti presenti (<span id="admin-proj-count">0</span>)</div>
-        <div class="admin-projects-list" id="admin-projects-list">
-          <div style="font-size:0.82rem;color:var(--ink-soft);text-align:center;padding:20px">Nessun progetto. Aggiungine uno sopra.</div>
-        </div>
-      </div>
-    </div>
-  </div>
 
   <!-- LIGHTBOX -->
   <div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="Dettaglio progetto">
@@ -2152,101 +1983,6 @@
     return `data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 300'><rect fill='${c}' width='400' height='300'/><text x='200' y='155' fill='%23b8933a' text-anchor='middle' font-size='48' font-family='serif'>☀</text><text x='200' y='195' fill='rgba(255,255,255,0.4)' text-anchor='middle' font-size='14' font-family='sans-serif'>${encodeURIComponent(cat)}</text></svg>`;
   }
 
-  // ===== ADMIN LIST =====
-  function renderAdminList() {
-    const list = document.getElementById('admin-projects-list');
-    const cnt = document.getElementById('admin-proj-count');
-    cnt.textContent = projects.length;
-    if (!projects.length) {
-      list.innerHTML = '<div style="font-size:0.82rem;color:var(--ink-soft);text-align:center;padding:20px">Nessun progetto. Aggiungine uno sopra.</div>';
-      return;
-    }
-    list.innerHTML = projects.map((p,i) => `
-      <div class="admin-project-row">
-        <div class="admin-project-thumb"><img src="${p.image || placeholderSvg(p.category)}" alt="${p.title}"></div>
-        <div style="flex:1">
-          <div class="admin-project-name">${p.title}</div>
-          <div class="admin-project-cat">${p.category}${p.zone ? ' · ' + p.zone : ''}${p.featured ? ' ⭐' : ''}</div>
-        </div>
-        <button class="admin-project-del" onclick="deleteProject(${i})" title="Elimina">✕</button>
-      </div>`).join('');
-  }
-
-  function deleteProject(i) {
-    if (!confirm(`Eliminare "${projects[i].title}"?`)) return;
-    projects.splice(i, 1);
-    saveProjects();
-    renderProjects();
-    renderAdminList();
-    showToast('Progetto eliminato');
-  }
-
-  // ===== IMAGE UPLOAD =====
-  const imgInput = document.getElementById('imgInput');
-  const imgPreview = document.getElementById('imgPreview');
-  const uploadArea = document.getElementById('uploadArea');
-  let pendingImages = [];
-
-  imgInput.addEventListener('change', e => handleFiles(e.target.files));
-  uploadArea.addEventListener('dragover', e => { e.preventDefault(); uploadArea.classList.add('dragover'); });
-  uploadArea.addEventListener('dragleave', () => uploadArea.classList.remove('dragover'));
-  uploadArea.addEventListener('drop', e => { e.preventDefault(); uploadArea.classList.remove('dragover'); handleFiles(e.dataTransfer.files); });
-
-  function handleFiles(files) {
-    Array.from(files).forEach(file => {
-      if (!file.type.startsWith('image/')) return;
-      const reader = new FileReader();
-      reader.onload = e => {
-        pendingImages.push(e.target.result);
-        renderPreview();
-      };
-      reader.readAsDataURL(file);
-    });
-  }
-
-  function renderPreview() {
-    imgPreview.innerHTML = pendingImages.map((src, i) => `
-      <div class="admin-preview-item">
-        <img src="${src}" alt="">
-        <button class="admin-preview-remove" onclick="removeImg(${i})">✕</button>
-      </div>`).join('');
-  }
-  function removeImg(i) { pendingImages.splice(i,1); renderPreview(); }
-
-  // ===== SAVE PROJECT =====
-  document.getElementById('a-save').addEventListener('click', () => {
-    const title = document.getElementById('a-title').value.trim();
-    if (!title) { showToast('Inserisci il titolo del progetto', true); return; }
-    const proj = {
-      title,
-      category: document.getElementById('a-cat').value,
-      zone: document.getElementById('a-zone').value.trim(),
-      power: document.getElementById('a-power').value.trim(),
-      year: document.getElementById('a-year').value.trim(),
-      description: document.getElementById('a-desc').value.trim(),
-      image: pendingImages[0] || '',
-      featured: document.getElementById('a-featured').checked,
-      createdAt: Date.now()
-    };
-    // Se featured, deseleziona altri
-    if (proj.featured) projects.forEach(p => p.featured = false);
-    projects.unshift(proj);
-    saveProjects();
-    renderProjects();
-    renderAdminList();
-    // Reset form
-    document.getElementById('a-title').value = '';
-    document.getElementById('a-zone').value = '';
-    document.getElementById('a-power').value = '';
-    document.getElementById('a-year').value = '';
-    document.getElementById('a-desc').value = '';
-    document.getElementById('a-featured').checked = false;
-    pendingImages = [];
-    imgInput.value = '';
-    renderPreview();
-    showToast('✓ Progetto aggiunto con successo!');
-  });
-
   // ===== LIGHTBOX =====
   function openLightbox(idx) {
     if (!projects[idx]) return;
@@ -2295,20 +2031,6 @@
     document.getElementById('more-btn').textContent = h.classList.contains('visible') ? 'Mostra meno ↑' : 'Vedi altri lavori ↓';
   });
 
-  // ===== ADMIN PANEL =====
-  document.getElementById('adminToggle').onclick = () => document.getElementById('adminOverlay').classList.add('open');
-  document.getElementById('adminClose').onclick = () => document.getElementById('adminOverlay').classList.remove('open');
-  document.getElementById('adminOverlay').onclick = e => { if (e.target === e.currentTarget) e.currentTarget.classList.remove('open'); };
-
-  // ===== TOAST =====
-  function showToast(msg, isError = false) {
-    const t = document.getElementById('toast');
-    t.textContent = msg;
-    t.style.background = isError ? '#ef4444' : 'var(--green)';
-    t.classList.add('show');
-    setTimeout(() => t.classList.remove('show'), 3000);
-  }
-
   // ===== HEADER SCROLL =====
   window.addEventListener('scroll', () => {
     document.getElementById('header').classList.toggle('scrolled', window.scrollY > 60);
@@ -2350,22 +2072,12 @@
     const heroEl = document.getElementById('hero-img');
     const chiEl = document.getElementById('chisiamo-img');
     if (PRELOADED_PROJECTS && PRELOADED_PROJECTS.length > 0) {
-      if(heroEl) heroEl.src = PRELOADED_PROJECTS[0].image;
       // Pick a good image for chi-siamo: villa with garden (index 1)
       if(chiEl) chiEl.src = PRELOADED_PROJECTS[1].image;
     }
   }
   initHeroImages();
-  // Merge preloaded + localStorage projects
-  const stored = JSON.parse(localStorage.getItem('li_projects') || '[]');
-  // Only add preloaded if no stored data yet, or merge missing ones
-  if (stored.length === 0) {
-    projects = [...PRELOADED_PROJECTS];
-    saveProjects();
-  }
   renderProjects();
-  renderAdminList();
   </script>
 </body>
 </html>
-

@@ -118,8 +118,10 @@
     const images = document.querySelectorAll('img');
     
     images.forEach(img => {
-      // Add loading state class
-      img.classList.add('loading');
+      const isCritical = img.id === 'hero-img' || img.getAttribute('loading') === 'eager';
+      if (!isCritical) {
+        img.classList.add('loading');
+      }
       
       // Remove loading class when image loads
       img.addEventListener('load', function() {
