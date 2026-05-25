@@ -1280,24 +1280,26 @@
       .numero-item { border-right: none; border-bottom: 1px solid rgba(255,255,255,0.08); }
     }
     @media (max-width: 768px) {
-      .hero { height: 100vh; min-height: 700px; }
-      .hero-eyebrow { font-size: 0.7rem; padding: 8px 20px; }
-      .hero-h1 { font-size: clamp(2.2rem, 7vw, 3.2rem); }
-      .hero-lead { font-size: 1rem; max-width: 100%; }
+      .hero { height: 100vh; min-height: 100vh; max-height: 100vh; overflow: hidden; margin: 0; padding: 0; }
+      .hero-visual { height: 100%; position: absolute; top: 0; left: 0; right: 0; bottom: 0; margin: 0; padding: 0; }
+      .hero-visual img { height: 100%; width: 100%; object-fit: cover; object-position: center; margin: 0; padding: 0; }
+      .hero-content { padding: 20px 16px; height: 100%; justify-content: center; position: relative; z-index: 10; margin: 0; }
+      .hero-eyebrow { font-size: 0.7rem; padding: 8px 20px; margin-bottom: 20px; }
+      .hero-h1 { font-size: clamp(2.2rem, 7vw, 3.2rem); line-height: 1.1; }
+      .hero-lead { font-size: 1rem; max-width: 100%; margin-top: 20px; }
       .logo-icon { display: none; }
       .cursor { display: none; }
       .cursor-ring { display: none; }
       .logo-text { font-size: 1.15rem; }
-      .hero { min-height: 620px; }
-      .hero-stats { width: 100%; display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; padding-top: 28px; margin-top: 34px; }
-      .hero-stat { padding: 10px 8px; border: 1px solid rgba(255,255,255,0.12); border-radius: 14px; background: rgba(255,255,255,0.03); }
-      .hero-stat-num { font-size: 1.8rem; }
-      .hero-stat-label { font-size: 0.6rem; letter-spacing: 0.12em; }
-      .hero-actions { gap: 12px; margin-top: 40px; }
-      .btn-primary, .btn-ghost { padding: 14px 28px; font-size: 0.85rem; }
+      .hero-stats { width: 100%; display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; padding-top: 20px; margin-top: 24px; }
+      .hero-stat { padding: 8px 6px; border: 1px solid rgba(255,255,255,0.12); border-radius: 12px; background: rgba(255,255,255,0.03); }
+      .hero-stat-num { font-size: 1.6rem; }
+      .hero-stat-label { font-size: 0.55rem; letter-spacing: 0.1em; margin-top: 4px; }
+      .hero-actions { gap: 10px; margin-top: 28px; }
+      .btn-primary, .btn-ghost { padding: 12px 24px; font-size: 0.8rem; }
       .container { padding: 0 20px; }
       .section { padding: 72px 0; }
-      header { padding: 0 20px; }
+      header { padding: 0 20px; transition: transform 0.3s ease; }
       nav { display: none; }
       .ham { display: flex; }
       .projects-grid { grid-template-columns: 1fr; }
@@ -1312,12 +1314,17 @@
       .footer-top { grid-template-columns: 1fr; }
       .sticky-call { display: none; }
       .call-float { display: flex; }
-      .wa-float { bottom: 70px; }
+      .wa-float { bottom: 70px; right: 20px; }
+      .call-float { bottom: 140px; right: 20px; }
       .cta-actions { flex-direction: column; align-items: center; }
       .lightbox-inner { grid-template-columns: 1fr; max-height: 95vh; }
       .lightbox-info { max-height: 40vh; }
       .projects-header { flex-direction: column; align-items: flex-start; gap: 0; }
-      .hero-scroll { left: auto; right: 20px; transform: none; }
+      .hero-scroll { left: auto; right: 20px; transform: none; display: none; }
+      .numero-label { opacity: 1 !important; color: rgba(255,255,255,0.7) !important; }
+      .numero-grid { grid-template-columns: repeat(2, 1fr); gap: 16px; }
+      .numero-item { padding: 20px 16px; }
+      .numero-val { font-size: 2.2rem; }
     }
   </style>
 </head>
@@ -1525,7 +1532,7 @@
       </div>
       <div class="numero-item" data-reveal data-reveal-delay="3">
         <div class="numero-val">100%</div>
-        <div class="numero-label">Lavori in house</div>
+        <div class="numero-label">Team certificato</div>
       </div>
     </div>
   </section>
@@ -1608,7 +1615,7 @@
         </div>
         <div class="metodo-step" data-reveal data-reveal-delay="2">
           <div class="metodo-num-wrap"><div class="metodo-num">03</div></div>
-          <div class="metodo-title">Installazione in house</div>
+          <div class="metodo-title">Installazione certificata</div>
           <div class="metodo-desc">Solo il nostro team lavora sul tuo cantiere — nessun subappalto, responsabilità totale.</div>
         </div>
         <div class="metodo-step" data-reveal data-reveal-delay="3">
@@ -1902,7 +1909,7 @@
     total.textContent = projects.length ? String(projects.length).padStart(2,'0') : '—';
 
     if (!projects.length) {
-      featured.innerHTML = '<p style="color:var(--ink-soft);text-align:center;padding:60px 0;font-style:italic;font-size:1.1rem">Nessun progetto ancora.<br>Aggiungili dal pannello admin ↙</p>';
+      featured.innerHTML = '<p style="color:var(--ink-soft);text-align:center;padding:60px 0;font-style:italic;font-size:1.1rem">Nessun progetto ancora.</p>';
       grid.innerHTML = '';
       hidden.innerHTML = '';
       hidden.classList.remove('visible');
@@ -1923,7 +1930,7 @@
           <div class="project-featured-num">01</div>
           <div>
             <div class="project-featured-title">${feat.title}</div>
-            <div class="project-featured-desc">${feat.description || 'Impianto realizzato con studio tecnico interno e installazione in house.'}</div>
+            <div class="project-featured-desc">${feat.description || 'Impianto realizzato con studio tecnico interno e installazione certificata.'}</div>
             <div class="project-featured-meta">
               ${feat.zone ? `<span class="project-tag">📍 ${feat.zone}</span>` : ''}
               ${feat.power ? `<span class="project-tag">⚡ ${feat.power}</span>` : ''}
@@ -1998,7 +2005,7 @@
     document.getElementById('lb-img').alt = p.title;
     document.getElementById('lb-tag').textContent = p.category;
     document.getElementById('lb-title').textContent = p.title;
-    document.getElementById('lb-desc').textContent = p.description || 'Impianto realizzato con studio tecnico interno, installazione in house e zero subappalti.';
+    document.getElementById('lb-desc').textContent = p.description || 'Impianto realizzato con studio tecnico interno, installazione certificata e zero subappalti.';
     const meta = document.getElementById('lb-meta');
     meta.innerHTML = [
       p.zone ? `<div class="lightbox-meta-row"><span class="lightbox-meta-key">Zona</span><span class="lightbox-meta-val">${p.zone}</span></div>` : '',

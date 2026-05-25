@@ -22,13 +22,33 @@
   }
 
   if (header) {
+    var lastScrollTop = 0;
+    var isMobile = window.innerWidth <= 768;
+    
     window.addEventListener(
       "scroll",
       function () {
-        header.classList.toggle("shadow-lg", window.scrollY > 24);
+        var scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+        
+        if (isMobile) {
+          if (scrollTop > lastScrollTop && scrollTop > 100) {
+            header.style.transform = 'translateY(-100%)';
+            header.style.transition = 'transform 0.3s ease';
+          } else {
+            header.style.transform = 'translateY(0)';
+            header.style.transition = 'transform 0.3s ease';
+          }
+        }
+        
+        header.classList.toggle("shadow-lg", scrollTop > 24);
+        lastScrollTop = scrollTop <= 0 ? 0 : scrollTop;
       },
       { passive: true }
     );
+    
+    window.addEventListener('resize', function() {
+      isMobile = window.innerWidth <= 768;
+    });
   }
 
   var prefersReduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
