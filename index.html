@@ -177,6 +177,7 @@
       overflow-x: hidden;
       -webkit-font-smoothing: antialiased;
     }
+    body.hero-page { background: transparent !important; }
     img { max-width: 100%; display: block; }
     img.loading { opacity: 0; transition: opacity 0.3s ease; }
     img.loaded { opacity: 1; animation: fadeInScale 0.6s ease; }
@@ -195,6 +196,9 @@
       height: 72px;
       display: flex; align-items: center; justify-content: space-between;
       transition: all 0.4s ease;
+      background: transparent;
+      backdrop-filter: none;
+      border-bottom: 1px solid transparent;
     }
     header.scrolled {
       background: rgba(14,26,16,0.96);
@@ -218,7 +222,7 @@
     }
     .nav-cta:hover { background: var(--gold-light) !important; }
 
-    .ham { display: none; flex-direction: column; gap: 5px; }
+    .ham { display: none; flex-direction: column; gap: 5px; position: absolute; right: 48px; top: 50%; transform: translateY(-50%); z-index: 101; }
     .ham span { width: 24px; height: 1.5px; background: white; display: block; transition: all 0.3s; }
 
     /* ===== HERO - FULL SCREEN ===== */
@@ -1280,30 +1284,32 @@
       .numero-item { border-right: none; border-bottom: 1px solid rgba(255,255,255,0.08); }
     }
     @media (max-width: 768px) {
-      .hero { height: 100vh; min-height: 100vh; max-height: 100vh; overflow: hidden; margin: 0; padding: 0; }
-      .hero-visual { height: 100%; position: absolute; top: 0; left: 0; right: 0; bottom: 0; margin: 0; padding: 0; }
-      .hero-visual img { height: 100%; width: 100%; object-fit: cover; object-position: center; margin: 0; padding: 0; }
-      .hero-content { padding: 20px 16px; height: 100%; justify-content: center; position: relative; z-index: 10; margin: 0; }
-      .hero-eyebrow { font-size: 0.7rem; padding: 8px 20px; margin-bottom: 20px; }
-      .hero-h1 { font-size: clamp(2.2rem, 7vw, 3.2rem); line-height: 1.1; }
-      .hero-lead { font-size: 1rem; max-width: 100%; margin-top: 20px; }
+      .hero { height: 100vh; min-height: 100vh; max-height: 100vh; overflow: hidden; margin: 0; padding: 0; background: transparent !important; }
+      .hero-visual { height: 100%; position: absolute; top: 0; left: 0; right: 0; bottom: 0; margin: 0; padding: 0; background: transparent !important; }
+      .hero-visual img { height: 100%; width: 100%; object-fit: cover; object-position: center; margin: 0; padding: 0; background: transparent !important; display: block; }
+      .hero-content { padding: 20px 16px; height: 100%; justify-content: center; position: relative; z-index: 10; margin: 0; background: transparent !important; }
+      .hero-eyebrow { font-size: 0.7rem; padding: 8px 20px; margin-bottom: 20px; background: rgba(0,0,0,0.3); border-radius: 20px; color: white; }
+      .hero-h1 { font-size: clamp(2.2rem, 7vw, 3.2rem); line-height: 1.1; color: white; }
+      .hero-lead { font-size: 1rem; max-width: 100%; margin-top: 20px; color: rgba(255,255,255,0.9); }
       .logo-icon { display: none; }
       .cursor { display: none; }
       .cursor-ring { display: none; }
-      .logo-text { font-size: 1.15rem; }
-      .hero-stats { width: 100%; display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; padding-top: 20px; margin-top: 24px; }
+      .logo-text { font-size: 1.15rem; color: white; }
+      .hero-stats { width: 100%; display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; padding-top: 20px; margin-top: 24px; background: rgba(0,0,0,0.2); border-radius: 16px; padding: 16px; }
       .hero-stat { padding: 8px 6px; border: 1px solid rgba(255,255,255,0.12); border-radius: 12px; background: rgba(255,255,255,0.03); }
-      .hero-stat-num { font-size: 1.6rem; }
-      .hero-stat-label { font-size: 0.55rem; letter-spacing: 0.1em; margin-top: 4px; }
+      .hero-stat-num { font-size: 1.6rem; color: white; }
+      .hero-stat-label { font-size: 0.55rem; letter-spacing: 0.1em; margin-top: 4px; color: rgba(255,255,255,0.7); }
       .hero-actions { gap: 10px; margin-top: 28px; }
       .btn-primary, .btn-ghost { padding: 12px 24px; font-size: 0.8rem; }
       .container { padding: 0 20px; }
       .section { padding: 72px 0; }
-      header { padding: 0 20px; transition: transform 0.3s ease; }
+      header { padding: 0 20px; transition: transform 0.3s ease; background: transparent !important; }
       nav { display: none; }
-      .ham { display: flex; }
+      .ham { display: flex; right: 20px; position: absolute; top: 50%; transform: translateY(-50%); }
       .projects-grid { grid-template-columns: 1fr; }
       .project-featured { grid-template-columns: 1fr; }
+      * { -webkit-tap-highlight-color: transparent; }
+      body { background: transparent !important; overflow-x: hidden; }
       .project-featured-info { padding: 32px 28px; }
       .servizi-grid { grid-template-columns: 1fr; }
       .servizi-header { flex-direction: column; align-items: flex-start; gap: 12px; }
@@ -1328,7 +1334,7 @@
     }
   </style>
 </head>
-<body>
+<body class="hero-page">
 
   <!-- Custom Cursor (desktop only) -->
   <div class="cursor" id="cursor"></div>
